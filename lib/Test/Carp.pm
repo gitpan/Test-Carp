@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use Carp;
 
-$Test::Carp::VERSION = '0.1';
+$Test::Carp::VERSION = '0.2';
 
 # Prototype mismatch: sub Test::Carp::_ok: none vs ($;$) at .../Test/Carp.pm line ...
 # perl -MTest::More  -e 'print prototype("Test::More::ok");'
@@ -27,12 +27,12 @@ sub import {
     }
 
     no strict 'refs';
-    for my $func qw(
+    for my $func (qw(
       does_carp               does_cluck
       does_croak              does_confess
       does_carp_that_matches  does_cluck_that_matches
       does_croak_that_matches does_confess_that_matches
-      ) {
+      )) {
         *{ $caller . "::$func" } = *{$func};
       };
 }
@@ -199,7 +199,7 @@ Test::Carp - test your code for calls to Carp functions
 
 =head1 VERSION
 
-This document describes Test::Carp version 0.1
+This document describes Test::Carp version 0.2
 
 =head1 SYNOPSIS
 
